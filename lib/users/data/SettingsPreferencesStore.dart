@@ -1,9 +1,9 @@
 import '../../device/PreferencesStore.dart';
 
 class SettingPreferencesStore {
-  SettingPreferencesStore([PreferencesStore? store]) : _store = store ?? PreferencesStore.instance;
+  SettingPreferencesStore._([PreferencesStore? store]) : _store = store ?? PreferencesStore.instance;
 
-  static final SettingPreferencesStore instance = SettingPreferencesStore();
+  static final SettingPreferencesStore instance = SettingPreferencesStore._();
 
   final PreferencesStore _store;
 

@@ -1,11 +1,13 @@
+import 'package:flutter_woc/programs/data/ProgramsRepository.dart';
+
 import '../device/PreferencesStore.dart';
 import 'NotificationType.dart';
 
 class NotificationPreferencesStore {
-  NotificationPreferencesStore([PreferencesStore? store])
+  NotificationPreferencesStore._([PreferencesStore? store])
       : _store = store ?? PreferencesStore.instance;
 
-  static final NotificationPreferencesStore instance = NotificationPreferencesStore();
+  static final NotificationPreferencesStore instance = NotificationPreferencesStore._();
 
   final PreferencesStore _store;
 

@@ -16,7 +16,7 @@ class WOCApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
-        ChangeNotifierProvider(create: (_) => NetworkObserver()),
+        ChangeNotifierProvider.value(value: NetworkObserver.instance),
         ChangeNotifierProvider(create: (_) => NotificationViewModel())
       ],
       child: _Splash(

@@ -6,10 +6,12 @@ import 'package:flutter/foundation.dart';
 enum ConnectivityStatus { checking, connected, disconnected }
 
 class NetworkObserver extends ChangeNotifier {
-  NetworkObserver() {
+  NetworkObserver._() {
     _sub = Connectivity().onConnectivityChanged.listen(_handleResults);
     _checkNow();
   }
+
+  static final NetworkObserver instance = NetworkObserver._();
 
   ConnectivityStatus _status = ConnectivityStatus.checking;
   ConnectivityStatus get status => _status;
