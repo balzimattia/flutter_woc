@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_woc/WOCApp.dart';
 import 'package:flutter_woc/notifications/MessagingService.dart';
 import 'package:flutter_woc/supabase/SupabaseClient.dart';
-import 'package:flutter_woc/ui/ThemeController.dart';
+import 'package:flutter_woc/users/data/SettingsPreferencesStore.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -13,7 +13,7 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SupabaseService.initialize();
-  await ThemeController.instance.load();
+  await SettingsPreferencesStore.instance.load();
 
   runApp(const WOCApp());
 

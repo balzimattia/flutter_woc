@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_woc/notifications/NotificationViewModel.dart';
 import 'package:flutter_woc/ui/AppTheme.dart';
-import 'package:flutter_woc/ui/ThemeController.dart';
+import 'package:flutter_woc/users/data/SettingsPreferencesStore.dart';
 import 'package:provider/provider.dart';
 import 'NetworkObserver.dart';
 import 'auth/viewmodels/AuthViewModel.dart';
@@ -21,7 +21,7 @@ class WOCApp extends StatelessWidget {
       ],
       child: _Splash(
         child: ValueListenableBuilder<ThemeMode>(
-          valueListenable: ThemeController.instance.themeMode,
+          valueListenable: SettingsPreferencesStore.instance.themeMode,
           builder: (context, mode, _) => MaterialApp.router(
             title: 'WOC',
             theme: AppTheme.light,

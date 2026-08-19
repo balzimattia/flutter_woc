@@ -3,7 +3,7 @@ import 'package:flutter_woc/auth/data/AuthRepository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../notifications/NotificationPreferencesStore.dart';
 import '../../notifications/NotificationType.dart';
-import '../../ui/ThemeController.dart';
+import '../data/SettingsPreferencesStore.dart';
 import '../states/ChangePasswordState.dart';
 
 class SettingsViewModel extends ChangeNotifier {
@@ -13,7 +13,7 @@ class SettingsViewModel extends ChangeNotifier {
   })  : _notificationPreferencesStore = notificationPreferencesStore ?? NotificationPreferencesStore.instance,
         _authRepository = authRepository ?? AuthRepository.instance {
     _loadInitialState();
-    ThemeController.instance.themeMode.addListener(_onThemeChanged);
+    SettingsPreferencesStore.instance.themeMode.addListener(_onThemeChanged);
   }
 
   final NotificationPreferencesStore _notificationPreferencesStore;
@@ -22,7 +22,7 @@ class SettingsViewModel extends ChangeNotifier {
   Map<NotificationType, bool> notificationPreferences = {};
   ChangePasswordState changePasswordState = const ChangePasswordState();
 
-  bool get isDarkTheme => ThemeController.instance.themeMode.value == ThemeMode.dark;
+  bool get isDarkTheme => SettingsPreferencesStore.instance.themeMode.value == ThemeMode.dark;
 
   void _onThemeChanged() => notifyListeners();
 
@@ -38,7 +38,7 @@ class SettingsViewModel extends ChangeNotifier {
   }
 
   Future<void> setDarkTheme(bool enabled) async {
-    await ThemeController.instance.setDarkTheme(enabled);
+    await SettingsPreferencesStore.instance.setDarkTheme(enabled);
   }
 
   void onNewPasswordChange(String value) {
@@ -104,7 +104,7 @@ class SettingsViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    ThemeController.instance.themeMode.removeListener(_onThemeChanged);
+    SettingsPreferencesStore.instance.themeMode.removeListener(_onThemeChanged);
     super.dispose();
   }
 }
