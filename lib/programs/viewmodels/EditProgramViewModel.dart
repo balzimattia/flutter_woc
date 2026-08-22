@@ -5,47 +5,6 @@ import '../data/ProgramsRepository.dart';
 import '../data/models/ProgramSheet.dart';
 import '../states/EditProgramState.dart';
 
-extension on Exercise {
-  ExerciseState toUiState() => ExerciseState(
-    name: name,
-    sets: sets,
-    reps: reps,
-    rest: rest,
-    weight: weight,
-    coachComment: coachComment,
-    clienteComment: clienteComment,
-  );
-}
-
-extension on ExerciseState {
-  Exercise toDomain() => Exercise(
-    name: name,
-    sets: sets,
-    reps: reps,
-    rest: rest,
-    weight: weight,
-    coachComment: coachComment,
-    clienteComment: clienteComment,
-  );
-}
-
-extension on EditProgramState {
-  ProgramSheet toProgramSheet() => ProgramSheet(
-    number: programNumber,
-    weeks: weeks
-        .map((week) => Week(
-      number: week.number,
-      days: week.days
-          .map((day) => Day(
-        number: day.number,
-        isCompleted: day.isCompleted,
-        exercises: day.exercises.map((e) => e.toDomain()).toList(),
-      ))
-          .toList(),
-    ))
-        .toList(),
-  );
-}
 
 class EditProgramViewModel extends ChangeNotifier {
   EditProgramViewModel({CoachProgramsRepositoryInterface? programsRepository})
@@ -213,4 +172,47 @@ class EditProgramViewModel extends ChangeNotifier {
     _editErrorMessage.close();
     super.dispose();
   }
+}
+
+
+extension on Exercise {
+  ExerciseState toUiState() => ExerciseState(
+    name: name,
+    sets: sets,
+    reps: reps,
+    rest: rest,
+    weight: weight,
+    coachComment: coachComment,
+    clienteComment: clienteComment,
+  );
+}
+
+extension on ExerciseState {
+  Exercise toDomain() => Exercise(
+    name: name,
+    sets: sets,
+    reps: reps,
+    rest: rest,
+    weight: weight,
+    coachComment: coachComment,
+    clienteComment: clienteComment,
+  );
+}
+
+extension on EditProgramState {
+  ProgramSheet toProgramSheet() => ProgramSheet(
+    number: programNumber,
+    weeks: weeks
+        .map((week) => Week(
+      number: week.number,
+      days: week.days
+          .map((day) => Day(
+        number: day.number,
+        isCompleted: day.isCompleted,
+        exercises: day.exercises.map((e) => e.toDomain()).toList(),
+      ))
+          .toList(),
+    ))
+        .toList(),
+  );
 }
